@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template page</title>
+</head>
+<body>
+    <h1>
+        Second page!
+        {{ title }}
+
+        <form action="{% url 'list view' %}" method="get">
+            <label>
+                <input name="pattern" placeholder="Filter employees here">
+            </label>
+            <label>
+                <input name="sorting" placeholder="Place sorting criteria here">
+            </label>
+            <button>Search:</button>
+            {% csrf_token %}
+
+        </form>
+
+        <ul>
+            {% for employee in employees %}
+                <li>
+                    <a href="{% url 'details view' pk=employee.pk %}">
+                        {{ employee.pk }}
+                    </a>
+                    {{ employee.first_name }} {{ employee.last_name }} {{ employee.position }}
+                </li>
+            {% endfor %}
+        </ul>
+    </h1>
+</body>
+</html>

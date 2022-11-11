@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template page</title>
+</head>
+<body>
+    <h1>
+        Second page!
+        {{ title }}
+
+        <ul>
+            {% for employee in employees %}
+                <li>
+                    {{ employee.first_name }} {{ employee.last_name }} {{ employee.position }}
+                </li>
+            {% endfor %}
+        </ul>
+    </h1>
+</body>
+</html>

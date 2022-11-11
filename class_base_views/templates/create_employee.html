@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating an employe Page!</title>
+</head>
+<body>
+    <h1>
+        Create employees here:
+    </h1>
+
+    <form method="post" action="{% url 'create employee' %}">
+        {{ form }}
+        <button>Create the new Employee</button>
+        {% csrf_token %}
+    </form>
+</body>
+</html>
