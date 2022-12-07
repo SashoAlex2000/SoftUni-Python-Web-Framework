@@ -50,7 +50,9 @@ def like_photo(request, photo_id):
     # )
     # photo_like.save()
 
-    user_liked_photos = get_user_liked_photos(photo_id)
+    user_liked_photos = PhotoLike.objects.filter(
+        photo_id=photo_id,
+        user_id=request.user.pk)
 
     if user_liked_photos:
         user_liked_photos.delete()
@@ -58,6 +60,7 @@ def like_photo(request, photo_id):
 
         PhotoLike.objects.create(  # we create a "zapis" of type PhotoLike in the DB to which we refer
             photo_id=photo_id,
+            user_id=request.user.pk,
         )
 
     # redirect_path = request.META['HTTP_REFERER'] + f'#photo-{photo_id}'

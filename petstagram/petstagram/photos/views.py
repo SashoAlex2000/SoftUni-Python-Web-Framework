@@ -37,6 +37,7 @@ def add_photo(request):
             photo = form.save(commit=False)
             photo.user = request.user
             photo.save()
+            form.save_m2m()
 
             return redirect('details photo', pk=photo.pk)
 
@@ -52,15 +53,20 @@ def add_photo(request):
 
 def details_photo(request, pk):
     photo = Photo.objects.filter(pk=pk).get()
-    has_user_liked = get_user_liked_photos(pk)
+
+    user_liked_photos = PhotoLike.objects.filter(
+        photo_id=pk,
+        user_id=request.user.pk)
+
     current_likes_count = photo.photolike_set.count()
     print(photo.tagged_pets.all())
 
     context = {
 
         'photo': photo,
-        'has_user_liked': has_user_liked,
+        'has_user_liked': user_liked_photos,
         'current_likes_count': current_likes_count,
+        'is_owner': request.user == photo.user,
 
     }
 

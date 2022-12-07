@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 
 from petstagram.accounts.forms import UserCreateForm
+from petstagram.photos.models import Photo
 
 # Create your views here.
 
@@ -34,8 +35,17 @@ class UserDetailsView(views.DetailView):
         context = super().get_context_data(**kwargs)
 
         context['is_owner'] = self.request.user == self.object  # self.object is the selected by pk profile
+        context['pet_count'] = self.object.pet_set.count()
 
+        # photos = self.object.photo_set.select_related('photolike')
+        # photos = self.object.photo_set.all() # this commenses the n+1 query problem
+        # Photo.objects.prefetch_related()
+        photos = self.object.photo_set.prefetch_related('photolike_set')
+
+        context['photos_count'] = photos.count()
         # context['photos_count'] = self.object
+
+        context['likes_count'] = sum(x.photolike_set.count() for x in photos)
 
         return context
 
@@ -46,7 +56,7 @@ class EditUserView(views.UpdateView):
     fields = ('first_name', 'last_name', 'email', 'gender',)
 
     def get_success_url(self):
-        return reverse_lazy('details user', kwargs = {
+        return reverse_lazy('details user', kwargs={
             'pk': self.request.user.pk,
         })
 
@@ -55,4 +65,3 @@ class UserDeleteView(views.DeleteView):
     template_name = 'accounts/profile-delete-page.html'
     model = UserModel
     success_url = reverse_lazy('index')
-
