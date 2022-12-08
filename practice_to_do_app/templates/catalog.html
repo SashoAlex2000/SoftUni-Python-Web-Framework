@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+
+    <h2>Your Tasks, sire:</h2>
+
+    <ul>
+        {% for task in object_list %}
+
+{#            {{ task }} <br>#}
+{#            {{ task.user_id }} <br>#}
+{#            {{ request.user.pk }} <br>#}
+            {% if task.user_id == request.user.pk %}
+                <li>
+                    {{ task.name }} --> <a href="{% url 'details' pk=task.pk%}">Details</a>
+                </li>
+            {% endif %}
+
+        {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+
+    <div class="task-details">
+        <h1>Task name: <strong>{{ object.name }}</strong></h1>
+
+        <p>Due date: {{ task.due_date }}</p>
+        <p>{{ task.description }}</p>
+        <p>Urgency of task: {{ task.urgency_level }}</p>
+        <form action="">
+            <p>Task completed: <input type="checkbox"></p>
+        </form>
+        <button>
+            <a href="{% url 'edit task' pk=object.pk %}">Edit this task!</a>
+        </button>
+
+
+    </div>
+{% endblock %}

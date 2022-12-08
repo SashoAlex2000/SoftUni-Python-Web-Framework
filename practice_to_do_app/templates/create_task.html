@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+
+    Create a new task:
+
+    <form action="{% url 'create task' %}" method="post" class="create-task-form">
+        {% for field in form %}
+            <div class="form-div">
+                <div class="label-div">
+                    <p>{{ field.label }}: </p>
+                </div>
+                <div class="label-div">
+                    <p>{{ field }}</p>
+                </div>
+
+            </div>
+        {% endfor %}
+        <div class="form-div">
+            <div class="button-div">
+                <button type="submit" class="create-button">Create</button>
+            </div>
+        </div>
+
+        {% csrf_token %}
+    </form>
+
+
+{% endblock %}

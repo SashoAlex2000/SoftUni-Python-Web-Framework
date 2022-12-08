@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+
+    <h3>
+    Hello to this glorious website!
+    </h3>
+
+    {% if request.user.is_authenticated %}
+        <h4>Welcome, {{ user_name }}</h4>
+    {% else %}
+        <h4>Login if you want to explore the wonderful worlds of Note-Taking!</h4>
+    {% endif %}
+
+{% endblock %}

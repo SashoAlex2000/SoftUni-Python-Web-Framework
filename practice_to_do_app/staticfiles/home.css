@@ -1,0 +1,127 @@
+
+nav {
+    background-color: red;
+    border: 2px solid darkseagreen;
+
+}
+
+.anchor-tag {
+    margin-top: 1.5%;
+    margin-left: 5px;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
+.first-item {
+    margin-right: 70%;
+}
+
+
+.create-task-form {
+    width: 50%;
+    background-color: oldlace;
+    border: 1px solid rebeccapurple;
+    margin: 0 auto;
+
+    border-radius: 100px;
+    overflow: hidden;
+
+}
+
+.form-div {
+    width: 100%;
+    /*background-color: #efa652;*/
+    border-top: 2.45px solid #3efc73;
+    /*border-bottom: 1.85px solid #3efc73;*/
+    /*margin: 0 auto;*/
+
+    /*display: flex;*/
+    /*justify-content: center;*/
+
+
+}
+
+.label-div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -0.15rem;
+    margin-top: -0.25rem;
+}
+
+.button-div {
+    margin-bottom: 0.25rem;
+    margin-top: 0.25rem;
+    display: flex;
+    justify-content: center;
+
+}
+
+.footer {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 56px;
+}
+
+.footer .footer-section {
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+    font-family: sans-serif;
+    z-index: -2;
+}
+
+.footer span:hover {
+    color: #ff0000;
+}
+
+.main {
+    min-height: calc(100vh - 150px);
+}
+
+/*.create-button {*/
+/*    width: 250px;*/
+/*    border-radius: 25px;*/
+/*}*/
+
+.create-button {
+  border: none;
+    font-family: 'Lato', serif;
+  cursor: pointer;
+  padding: 10px 35px;
+  display: inline-block;
+  margin: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+    width: 185px;
+    border-radius: 35px;
+}
+
+.create-button {
+  background: #34495e;
+  color: #fff;
+}
+
+.create-button:hover {
+  background: #2c3e50;
+}
+
+.create-button:active {
+  background: #2c3e50;
+  top: 2px;
+}
+
+.create-button:before {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  line-height: 3;
+  font-size: 140%;
+  width: 60px;
+}
