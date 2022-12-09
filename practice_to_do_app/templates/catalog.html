@@ -1,22 +1,64 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block page_content %}
 
-    <h2>Your Tasks, sire:</h2>
+    <div class="catalog-page">
+        <h2>Your Tasks, sire:</h2>
 
-    <ul>
-        {% for task in object_list %}
+        <section class="tasks-container">
+            <div class="tags-container">
 
-{#            {{ task }} <br>#}
-{#            {{ task.user_id }} <br>#}
-{#            {{ request.user.pk }} <br>#}
-            {% if task.user_id == request.user.pk %}
-                <li>
-                    {{ task.name }} --> <a href="{% url 'details' pk=task.pk%}">Details</a>
-                </li>
-            {% endif %}
+                <h4>Tags by urgency level:</h4>
+                <form class="tags-list">
+                    <a href="{% url 'filter by urgency' urgency="low"%}">Low</a>
+                    <a href="{% url 'filter by urgency' urgency="Medium"%}">Medium</a>
+                    <a href="{% url 'filter by urgency' urgency="High"%}">High</a>
+{#                    <input type="text" name="q" value="urgent">#}
+                    <a href="{% url 'filter by urgency' urgency="Urgent"%}">Urgent</a>
+                </form>
+            </div>
 
-        {% endfor %}
-    </ul>
+
+            <div class="todo-list">
+                {% for task in object_list %}
+
+                    {#            {{ task }} <br>#}
+                    {#            {{ task.user_id }} <br>#}
+                    {#            {{ request.user.pk }} <br>#}
+                    {% if task.user_id == request.user.pk %}
+                        <div class="todo">
+                            <h5>{{ task.name }}</h5>
+                            <p>{{ task.urgency_level }}</p>
+                            <button>
+                                <a href="{% url 'details' pk=task.pk %}">Details</a>
+                            </button>
+
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+
+        </section>
+    </div>
+
+    {#    <ul>#}
+    {#        {% for task in object_list %}#}
+    {##}
+    {#            {{ task }} <br>#}
+    {#            {{ task.user_id }} <br>#}
+    {#            {{ request.user.pk }} <br>#}
+    {#            {% if task.user_id == request.user.pk %}#}
+    {#                <li>#}
+    {#                    {{ task.name }} --> <a href="{% url 'details' pk=task.pk %}">Details</a>#}
+    {#                </li>#}
+    {#            {% endif %}#}
+    {##}
+    {#        {% endfor %}#}
+    {#    </ul>#}
 
 {% endblock %}

@@ -1,6 +1,6 @@
 <nav>
     <div class="nav-links">
-        <a href="{% url 'index' %}" class="first-item">Go to home page!</a>
+        <a href="{% url 'index' %}" class="first-item anchor-tag">Home page</a>
         <a href="{% url 'about' %}" class="anchor-tag">About</a>
 
         {% if not request.user.is_authenticated %}
@@ -8,10 +8,10 @@
             <a href="{% url 'register' %}" class="anchor-tag">Sign Up</a>
         {% else %}
 
-            <a href="{% url 'catalog' %}">Catalog</a>
-            <a href="{% url 'create task' %}">Create new task</a>
-            <a href="{% url 'logout' %}">Logout</a>
-            <div>Hello {{ user.username }}</div>
+            <a href="{% url 'catalog' %}" class="anchor-tag">Catalog</a>
+            <a href="{% url 'create task' %}" class="anchor-tag">Create new task</a>
+            <a href="{% url 'logout' %}" class="anchor-tag">Logout</a>
+{#            <div>Hello {{ user.username }}</div>#}
         {% endif %}
     </div>
 </nav>

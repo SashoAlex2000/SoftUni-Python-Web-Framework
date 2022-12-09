@@ -1,6 +1,7 @@
 from django.urls import path
 
-from practice_to_do_app.to_do_app.views import index, about_view, TasksListView, TaskDetailView, add_task, edit_task
+from practice_to_do_app.to_do_app.views import index, about_view, TasksListView, TaskDetailView, add_task, edit_task, \
+    TasksSearchListView
 
 urlpatterns = (
     path('', index, name='index'),
@@ -9,4 +10,6 @@ urlpatterns = (
     path('create/', add_task, name='create task'),
     path('catalog/<int:pk>', TaskDetailView.as_view(), name='details'),
     path('catalog/<int:pk>/edit', edit_task, name='edit task'),
+    path('catalog/<slug:urgency>', TasksSearchListView.as_view(), name='filter by urgency'),
 )
+

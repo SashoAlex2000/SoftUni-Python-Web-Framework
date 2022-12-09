@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+
+    <h1>Your {{ urgency }}-priority tasks:</h1>
+    {% if current_tasks %}
+        <ul>
+            {% for task in current_tasks %}
+                <li>
+                    {{ task.name }}
+                    {{ task.urgency }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>You have no {{ urgency }} tasks right now.</h3>
+        <p>You can create one <a href="{% url 'create task' %}">here</a>!</p>
+    {% endif %}
+
+{% endblock %}

@@ -36,11 +36,52 @@ class TasksListView(views.ListView):
 
     template_name = 'catalog.html'
 
+    # queryset = Task.objects.filter(name__icontains='tidy')
+    # queryset = Task.objects.filter(urgency_level__exact='urgent')
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get("q")
+        print(query)
+        return queryset
+
+
+class TasksSearchListView(views.ListView):
+    model = Task
+
+    template_name = 'search-by-urgency.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # print(Task.objects.get(urgency_level=self.kwargs.get('slug')))
+        # print(self.kwargs.get('slug'))
+        current_search = self.kwargs['urgency']
+        print(current_search)
+        context['urgency'] = current_search
+        context['current_tasks'] = Task.objects\
+            .filter(user_id=self.request.user.pk)\
+            .filter(urgency_level__icontains=current_search).all()
+        return context
+
+
+
 
 class TaskDetailView(views.DetailView):
     model = Task
 
     template_name = 'details.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(self.kwargs.get('pk'))
+        print(Task.objects.get(pk=self.kwargs.get('pk')))
+
+        print(context)
+
+
+        return context
 
 
 @login_required
