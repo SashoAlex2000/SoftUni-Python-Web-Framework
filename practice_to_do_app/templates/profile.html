@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+    <div class="main-view">
+        <h1>Profile for {{ object.username }}</h1>
+        <h1> {{ object.email }}</h1>
+        <h1> {{ task_count }}</h1>
+        <h1> {{ object.first_name }} {{ object.last_name }}</h1>
+        <p>View your finished tasks: <a href="{% url 'finished' pk=object.pk %}">Here</a></p>
+    </div>
+
+{% endblock %}

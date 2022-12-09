@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="main-view">
+
+        <form action="{% url 'search' %}" method="get">
+
+            <input type="text" name="pattern" placeholder="Search for a task by name: ">
+            <button type="submit">search</button>
+            {% csrf_token %}
+
+        </form>
+
+        {% if object_list %}
+            <ul>
+                {% for obj in object_list %}
+                    <li>
+                        <div>
+                            <h4>{{ obj.name }}</h4>
+                            <p>{{ obj.description }}</p>
+                            <span><a href="{% url 'details' pk=obj.pk %}">See more...</a></span>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>No such items.</h2>
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}

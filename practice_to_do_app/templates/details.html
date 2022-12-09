@@ -2,18 +2,31 @@
 
 {% block page_content %}
 
-    <div class="task-details">
-        <h1>Task name: <strong>{{ object.name }}</strong></h1>
+    <div class="task-details main-view">
 
-        <p>Due date: {{ task.due_date }}</p>
-        <p>{{ task.description }}</p>
-        <p>Urgency of task: {{ task.urgency_level }}</p>
-        <form action="">
-            <p>Task completed: <input type="checkbox"></p>
+
+        <h1 class="detail-item">Task name: <strong>{{ object.name }}</strong></h1>
+
+        <p class="detail-item">Due date: {{ task.due_date }}</p>
+        <p class="detail-item">{{ task.description }}</p>
+        <p class="detail-item">Urgency of task: {{ task.urgency_level }}</p>
+        <form action="{% url 'complete task' pk=task.pk %}">
+            <div class="detail-item">Task completed: <input type="submit"></div>
         </form>
-        <button>
-            <a href="{% url 'edit task' pk=object.pk %}">Edit this task!</a>
-        </button>
+        <div class="detail-item">
+            <button class="glow-on-hover" onclick="onButtonClick()">
+                <span class="a-span"><a href="{% url 'edit task' pk=object.pk %}" id="edit-anchor">Edit this task!</a></span>
+            </button>
+        </div>
+
+        <script>
+            function onButtonClick() {
+
+                const anchor = document.getElementById('edit-anchor').href;
+                window.location.href = anchor;
+
+            }
+        </script>
 
 
     </div>

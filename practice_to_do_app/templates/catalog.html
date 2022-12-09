@@ -3,8 +3,17 @@
 
 {% block page_content %}
 
-    <div class="catalog-page">
+    <div class="catalog-page main-view">
         <h2>Your Tasks, sire:</h2>
+
+        <form action="{% url 'catalog' %}">
+            <select name="sorting" id="">
+                <option value="urgency-desc">Urgency desc</option>
+                <option value="urgency-asc">Urgency asc</option>
+            </select>
+            <button type="submit">filter</button>
+            {% csrf_token %}
+        </form>
 
         <section class="tasks-container">
             <div class="tags-container">
@@ -26,7 +35,7 @@
                     {#            {{ task }} <br>#}
                     {#            {{ task.user_id }} <br>#}
                     {#            {{ request.user.pk }} <br>#}
-                    {% if task.user_id == request.user.pk %}
+                    {% if task.user_id == request.user.pk and task.completed is False %}
                         <div class="todo">
                             <h5>{{ task.name }}</h5>
                             <p>{{ task.urgency_level }}</p>

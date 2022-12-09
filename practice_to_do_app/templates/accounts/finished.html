@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="catalog-page main-view">
+        <h2>Tasks, which you have finished: </h2>
+
+        <section class="tasks-container">
+            <div class="todo-list">
+                {% for task in object_list %}
+
+                    {#            {{ task }} <br>#}
+                    {#            {{ task.user_id }} <br>#}
+                    {#            {{ request.user.pk }} <br>#}
+                    {% if task.user_id == request.user.pk and task.completed is True %}
+                        <div class="todo">
+                            <h5>{{ task.name }}</h5>
+                            <p>{{ task.urgency_level }}</p>
+
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+
+        </section>
+    </div>
+
+
+{% endblock %}

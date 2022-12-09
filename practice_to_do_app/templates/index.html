@@ -9,9 +9,14 @@
             </h3>
 
             {% if request.user.is_authenticated %}
-                <h4>Hello there, {{ user_name }}, nice to see you again</h4>
+                <h4>Hello there, {{ user_name }}! <br> nice to see you again.</h4>
             {% else %}
-                <h4><a href="{% url 'login' %}">Login</a> if you want to explore the wonderful worlds of Note-Taking!</h4>
+                <h4>You want to explore the wonderful world of Note-Taking?
+                <br>
+                 Don't hesitate!
+                <br>
+                <a href="{% url 'login' %}">Login</a> / <a href="{% url 'register' %}">Register</a>
+                </h4>
             {% endif %}
         </div>
     </div>

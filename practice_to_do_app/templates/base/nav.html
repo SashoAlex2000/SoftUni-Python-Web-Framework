@@ -9,7 +9,9 @@
         {% else %}
 
             <a href="{% url 'catalog' %}" class="anchor-tag">Catalog</a>
+            <a href="{% url 'search' %}" class="anchor-tag">Search for a task</a>
             <a href="{% url 'create task' %}" class="anchor-tag">Create new task</a>
+            <a href="{% url 'profile' pk=request.user.pk %}" class="anchor-tag">Profile</a>
             <a href="{% url 'logout' %}" class="anchor-tag">Logout</a>
 {#            <div>Hello {{ user.username }}</div>#}
         {% endif %}
