@@ -21,5 +21,6 @@ urlpatterns = [
     # This enables browsable API  - we can see the JSON responses in the browser, at the address, convenient
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('rest_api_lecture.web_api.urls')),
+    path('', include('rest_api_lecture.web.urls'))
 
 ]

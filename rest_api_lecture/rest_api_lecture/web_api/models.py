@@ -1,6 +1,8 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 
+from rest_api_lecture.web_api.managers import DepartmentManager
+
 # Create your models here.
 
 MIN_STATE_SALARY = 720
@@ -14,6 +16,9 @@ def validate_min_salary(value):
 
 
 class Department(models.Model):
+
+    objects = DepartmentManager()
+
     def __str__(self):
         return f'{self.name}'
 

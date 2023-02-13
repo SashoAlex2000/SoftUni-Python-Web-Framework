@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <!-- Content generated here -->
+    </div>
+
+    <script>
+        async function getEmployees () {
+            return await fetch('{% url "api list of employees"%}')
+                .then(response => response.json());
+        }
+
+        function  renderEmployeesList (employees) {
+            const employeeItems = employees.map(employee => `
+            <li>${employee.name} - ${employee.department.name} - ${employee.salary}</li>
+            `)
+
+            return `
+            <ul>${employeeItems.join('')}</ul>
+            `
+
+        }
+
+        window.onload = async function loadUp () {
+
+            const employees = await getEmployees();
+
+            document.querySelector(".main").innerHTML = renderEmployeesList(employees);
+        }
+
+    </script>
+
+</body>
+</html>

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     # Our Apps
     'rest_api_lecture.web_api',
+    'rest_api_lecture.web',
 ]
 
 MIDDLEWARE = [
