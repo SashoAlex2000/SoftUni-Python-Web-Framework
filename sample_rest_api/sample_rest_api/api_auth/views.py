@@ -59,3 +59,12 @@ class LogoutApiView(rest_views.APIView):
             'message': 'You have been logged out!'
         })
 
+# since there is not logout functionality:
+"""
+await fetch("http://localhost:8000/api/auth/logout/", {
+  method: "POST",
+  headers: {'Content-Type': 'application/json',
+           'Authorization': 'Token 8a0d62fa6b63b45e2b18ebd8dcf195866c2d9335'
+           }
+})
+"""

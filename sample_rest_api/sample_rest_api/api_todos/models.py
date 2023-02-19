@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 
 # Create your models here.
+
+UserModel = get_user_model()
 
 
 class Category(models.Model):
@@ -40,3 +43,10 @@ class Todo(models.Model):
         Category,
         on_delete=models.RESTRICT,
     )
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.RESTRICT,
+
+    )
+
