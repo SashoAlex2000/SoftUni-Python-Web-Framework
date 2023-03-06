@@ -16,7 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from custom_users.exception_handler import page_not_found
+from custom_users.views import handler500 as global500
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include("custom_users.urls")),
 ]
+
+# NOTHING WORKED --- because of DEBUG=True ??
+handler404 = page_not_found
+# handler500 = global500
+# handler500 = 'custom_users.views.handler500'
+# handler500 = 'custom_users.views.second_handler_500'
+handler500 = 'custom_users.views.custom_error_view'
