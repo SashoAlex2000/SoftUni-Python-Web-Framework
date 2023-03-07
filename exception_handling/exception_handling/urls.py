@@ -24,9 +24,11 @@ urlpatterns = [
     path('users/', include("custom_users.urls")),
 ]
 
-# NOTHING WORKED --- because of DEBUG=True ??
+# NOTHING WORKED --- because of DEBUG=True ?? YES
 handler404 = page_not_found
-# handler500 = global500
+handler500 = global500
 # handler500 = 'custom_users.views.handler500'
 # handler500 = 'custom_users.views.second_handler_500'
-handler500 = 'custom_users.views.custom_error_view'
+# handler500 = 'custom_users.views.custom_error_view'
+# ^ the string representation is not preferable, since it may not pick up changes down the road,
+# better with function reference

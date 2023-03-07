@@ -1,9 +1,11 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.template import loader
 from rest_framework import views as rest_views, response, status
 import bcrypt
+import logging
 
 from custom_users.models import CustomUser
 
@@ -12,7 +14,6 @@ from custom_users.models import CustomUser
 
 # all these handlers are 'global' - always raised
 def handler500(request):
-
     context = {
         'err_message': 'my handler',
     }
@@ -21,6 +22,7 @@ def handler500(request):
 
     # what the status code we return is :?
     curr_response.status_code = 500
+    logging.error(f"server error: {request.path}; method: {request.method}; content: {curr_response.content}")
 
     # return HttpResponse(template.render(request))
     return curr_response
@@ -34,6 +36,14 @@ def second_handler_500(request, *args, **kwargs):
 
 
 def custom_error_view(request, exception=None):
+    logging.debug("Hello from logger debugger!")
+    logging.info("info")
+    logging.warning("warning!")
+    logging.error("error!")
+    logging.critical("critical!")
+
+    logging.error(f"There has been some server error: {request.path}; method: {request.method}")
+
     return render(request, "test_500.html", {
         'err_message': 'StackOverflow error message',
     })
@@ -42,7 +52,13 @@ def custom_error_view(request, exception=None):
 class GetCreateUsers(rest_views.APIView):
     def get(self, request):
 
-        CustomUser.objects.get(pk=999)  # <-- to throw error
+        # local handling - is it better, since it is more specific ?
+        # try:
+        #     CustomUser.objects.get(pk=999)  # <-- to throw error
+        # except ObjectDoesNotExist as ex:
+        #     raise Http404
+
+        CustomUser.objects.get(pk=999)
 
         return response.Response(
             {
